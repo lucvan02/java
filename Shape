@@ -1,0 +1,168 @@
+package d1_n20dccn037;
+
+import java.util.Scanner;
+import java.util.ArrayList;
+
+abstract class Shape{
+    protected String color;
+    protected boolean filled;
+    public Shape(){};
+    public Shape(String color, boolean filled){
+        this.color=color;
+        this.filled=filled; 
+    }
+    public String getColor(){
+        return color;
+    }
+    public void setColor(String color){
+        this.color=color;
+    }
+    public boolean isFilled(){
+        return filled;
+    }
+    public void setFilled(boolean filled){
+        this.filled=filled;
+    }
+
+   public abstract double getArea();
+   public abstract double getPerimeter();
+   public abstract String toString();
+}
+
+class Circle extends Shape{
+    protected double radius;
+    public Circle(){}
+    public Circle(double radius){
+        this.radius=radius;
+    }
+    public Circle(double radius, String color, boolean filled){
+        this.radius=radius;
+        this.color=color;
+        this.filled=filled;
+    }
+    public double getRadius(){
+        return radius;
+    }
+    public void setRadius(double radius){
+        this.radius=radius;
+    }
+    @Override
+    public double getArea(){
+        return radius*3.14;
+    }
+    @Override
+    public double getPerimeter(){
+        return radius*2*3.14;
+    }
+    @Override
+    public String toString(){
+        return "\nradius: "+radius+
+               "\nArea: "+getArea()+
+               "\nPerimeter: "+getPerimeter()+
+               "\nFilled: "+filled;
+    }
+}
+
+class Rectangle extends Shape{
+    protected double width;
+    protected double length;
+    public Rectangle(){}
+    public Rectangle(double width, double length){
+        this.width=width;
+        this.length=length;
+    }
+    public Rectangle(double width, double length, String color, boolean filled){
+        this.width=width;
+        this.length=length;
+        this.color=color;
+        this.filled=filled;
+    }
+    public double getWidth(){
+        return width;
+    }
+    public void setWidth(double width){
+        this.width=width;
+    }
+    public void setLength(double length){
+        this.length=length;
+    }
+    
+    @Override
+    public double getArea(){
+        return width*length;
+    }
+    @Override
+    public double getPerimeter(){
+        return (width+length)*2;
+    }
+    @Override
+    public String toString(){
+        return "\nwidth: "+width+
+               "\nlength: "+length+
+               "\nArea: "+getArea()+
+               "\nPerimeter: "+getPerimeter()+
+               "\nFilled: "+filled;
+    }
+}
+
+public class D1_N20DCCN037 {
+    
+    static void cau1(){
+        Circle c1=new Circle(3);
+        Circle c2=new Circle(3,"yello",true);
+        Circle c3=new Circle();
+        System.out.println(c1.toString());
+        System.out.println(c2.toString());
+        System.out.println(c3.toString());
+        
+        Rectangle r1=new Rectangle();
+        Rectangle r2=new Rectangle(2,3);
+        Rectangle r3=new Rectangle(2,3,"blue",false);
+        System.out.println(r1.toString());
+        System.out.println(r2.toString());
+        System.out.println(r3.toString());
+    }
+    
+    public static void shapeInput(ArrayList<Shape> shapes) {
+         System.out.print("Ban muon nhap Circle hay Rectangle(Chon 'c' hoac 'r'): ");
+            String nhap=new Scanner(System.in).next();
+            if("c".equals(nhap)){
+                System.out.println("Moi nhap cac thong so cua hinh tron: ");
+                System.out.println("Moi nhap mau sac: ");
+                String color=new Scanner(System.in).nextLine();
+                System.out.println("Moi chon lap mau khong(nhap true hoac false): ");
+                boolean isFilled=new Scanner(System.in).nextBoolean();
+                System.out.println("Moi nhap ban kinh: ");
+                double radius=new Scanner(System.in).nextDouble();
+                Circle c=new Circle(radius,color,isFilled);
+                shapes.add(c);
+            }
+            else if("r".equals(nhap)){
+                System.out.println("Moi nhap cac thong so cua hinh chu nhat: ");
+                System.out.println("Moi nhap mau sac: ");
+                String color=new Scanner(System.in).nextLine();
+                System.out.println("Moi nhap chieu rong: ");
+                int width=new Scanner(System.in).nextInt();
+                System.out.println("Moi nhap chieu dai: ");
+                int length=new Scanner(System.in).nextInt();
+                System.out.println("Moi chon lap mau khong(nhap true hoac false): ");
+                boolean isFilled=new Scanner(System.in).nextBoolean();
+                Rectangle r=new Rectangle(width,length,color,isFilled);
+                shapes.add(r);
+            }
+    }
+    public static void main(String[] args) {
+        //cau1();
+        //Cau 2
+        System.out.println("Moi nhap so phan tu danh sach Shape: ");
+        int n=new Scanner(System.in).nextInt();
+        ArrayList<Shape> shapeList=new ArrayList<>();
+        for(int i=0;i<n;i++){
+            shapeInput(shapeList);
+            }
+        System.out.println("\t\t===Danh sach Shape ban da nhap===");
+        for(int i=0;i<shapeList.size();i++){
+            System.out.println(shapeList.get(i).toString());
+        }
+    }    
+}
