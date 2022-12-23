@@ -1,0 +1,77 @@
+class BooleanCourse {
+  private String name;
+  private boolean passed;
+
+  public BooleanCourse(String name, boolean passed) {
+    this.name = name;
+    this.passed = passed;
+  }
+
+  public boolean Passed() {
+    return passed;
+  }
+}
+
+class GradedCourse {
+  private String name;
+  private int grade;
+
+  public GradedCourse(String name, int grade) {
+    this.name = name;
+    this.grade = grade;
+  }
+
+  public boolean Passed() {
+    return grade >= 5;
+  }
+}
+
+class Project {
+  private BooleanCourse course1;
+  private BooleanCourse course2;
+  private GradedCourse course3;
+  private GradedCourse course4;
+
+  public Project(BooleanCourse course1, BooleanCourse course2, GradedCourse course3, GradedCourse course4) {
+    this.course1 = course1;
+    this.course2 = course2;
+    this.course3 = course3;
+    this.course4 = course4;
+  }
+
+  public boolean Passed() {
+    int passedCourses = 0;
+    if (course1.Passed()) {
+      passedCourses++;
+    }
+    if (course2.Passed()) {
+      passedCourses++;
+    }
+    if (course3.Passed()) {
+      passedCourses++;
+    }
+    if (course4.Passed()) {
+      passedCourses++;
+    }
+    return passedCourses >= 3;
+  }
+}
+
+public class Main {
+  public static void main(String[] args){
+    BooleanCourse course1 = new BooleanCourse("Course 1", true);
+    BooleanCourse course2 = new BooleanCourse("Course 2", false);
+    GradedCourse course3 = new GradedCourse("Course 3", 7);
+    GradedCourse course4 = new GradedCourse("Course 4", 4);
+    
+    Project project = new Project(course1, course2, course3, course4);
+    
+    if (project.Passed()) {
+      System.out.println("The project has passed");
+    } else {
+      System.out.println("The project has not passed");
+    }
+
+  }
+}
+
