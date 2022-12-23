@@ -1,0 +1,88 @@
+import java.util.Scanner;
+class Point{
+    private double x;
+    private double y;
+    Point(double x, double y){
+        this.x=x;
+        this.y=y;
+    }
+    public double getX(){
+        return x;
+    }
+    public double getY(){
+        return y;
+    }
+    public void setX(double x){
+        this.x=x;
+    }
+    public void setY(double y){
+        this.y=y;
+    }
+    public void setXY(double x, double y){
+        this.x=x;
+        this.y=y;
+    }
+    public String toString(){
+        return "x= "+x+" y= "+y;
+    }
+}
+
+class LineSub {
+	private Point begin;
+	private Point end;
+    public LineSub(double beginX, double beginY, double endX, double endY){
+        this.begin = new Point(beginX, endX);
+		this.end = new Point(beginY,endY);
+        
+    }
+    
+	public LineSub(Point begin, Point end) {
+		this.begin = begin;
+		this.end = end;
+	}
+
+    public String toString(){
+        return "...";
+    }
+	public Point getBegin() {
+		return begin;
+	}
+
+	public void setBegin(Point begin) {
+		this.begin = begin;
+	}
+
+	public Point getEnd() {
+		return end;
+	}
+
+	public void setEnd(Point end) {
+		this.end = end;
+	}
+	public double getLength() {
+		return Math.sqrt(Math.pow(end.getX() - begin.getX(), 2) 
+		+ Math.pow(end.getY() - begin.getY(), 2));
+	}
+}
+
+public class Main{
+    public static void main(String []args){
+        Scanner in = new Scanner(System.in);
+        double x1,x2,y1,y2;
+        System.out.print("Nhap vao x1: ");
+        x1 = in.nextDouble();
+        System.out.print("Nhap vao y1: ");
+        y1 = in.nextDouble();
+        System.out.print("Nhap vao x2: ");
+        x2 = in.nextDouble();
+        System.out.print("Nhap vao y2: ");
+        y2 = in.nextDouble();
+        
+        Point a = new Point(x1,y1);
+        Point b = new Point(x2,y2);
+        LineSub ab = new LineSub(a,b) ;
+        System.out.println(ab.getLength());
+    }
+}
+
+
